@@ -21,6 +21,20 @@ const face = FaceReplace(facePic)
 1. `face.replace(string)` => Promise&lt;Buffer&gt;: takes a string of the local file path or public URL of the picture we want to replace faces in, and replaces them
 2. `face.setFacePicture(string)` => void: takes a string of the local file path or public URL to replace the picture you want to replace all faces in your target picture(s)
 
+### CLI
+
+facreplace contains a CLI utility you can use to replace faces
+in pictures without writing your own script/code.
+
+```sh
+$ npm install -g facereplace
+$ facereplace -f /path/to/facePic.jpeg -p /path/to/destinationPicToReplaceFaces.jpeg
+Successfully replaced faces and saved your file here: /Users/yourname/facereplace_1577203511111.jpeg
+
+$ facereplace -f https://acme.com/facePic.jpeg -p https://acme.com/destinationPicToReplaceFaces.png
+Successfully replaced faces and saved your file here: /Users/yourname/facereplace_1577203511111.png
+```
+
 ### Usage
 
 ```js
