@@ -1,0 +1,36 @@
+{
+  "name": "facereplace",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "author": "Lance Whatley <lance.whatley@risk3sixty.com>",
+  "description": "Use face recognition to replace faces in pictures",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Risk3sixty-Labs/facereplace"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "postinstall": "npm run build",
+    "test": "mocha --exit --require @babel/register --recursive './src/**/*.spec.js'"
+  },
+  "devDependencies": {
+    "@babel/register": "^7.6.2",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@tensorflow/tfjs-node": "^1.5.1",
+    "canvas": "^2.6.1",
+    "core-js": "^3.3.2",
+    "face-api.js": "^0.22.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-plumber": "^1.2.1",
+    "jimp": "^0.9.3",
+    "regenerator-runtime": "^0.13.3",
+    "request": "^2.87.0",
+    "request-promise-native": "^1.0.5"
+  },
+  "license": "UNLICENSED"
+}
