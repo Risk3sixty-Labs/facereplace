@@ -8,6 +8,9 @@ module.exports = {
     './src/bin/facereplace.js'
   ],
   target: 'node',
+  node: {
+    __dirname: false
+  },
   output: {
     filename: 'facereplace',
   },
