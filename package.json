@@ -1,6 +1,6 @@
 {
   "name": "facereplace",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/index.js",
   "author": "Lance Whatley <lance.whatley@risk3sixty.com>",
   "description": "Use face recognition to replace faces in pictures",
