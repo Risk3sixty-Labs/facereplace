@@ -1,6 +1,7 @@
 # ignore
 *.log
 *.DS_Store
-/dist
 /node_modules
 /tmp
+/dist
+!/dist/bin/facereplace

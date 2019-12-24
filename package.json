@@ -14,7 +14,7 @@
     "test": "mocha --exit --require @babel/register --recursive './src/**/*.spec.js'"
   },
   "bin": {
-    "facereplace": "./dist/bin/facereplace.js"
+    "facereplace": "./dist/bin/facereplace"
   },
   "devDependencies": {
     "@babel/register": "^7.6.2",
@@ -24,6 +24,7 @@
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@tensorflow/tfjs-node": "^1.5.1",
+    "babel-loader": "^8.0.6",
     "canvas": "^2.6.1",
     "colors": "^1.4.0",
     "core-js": "^3.3.2",
@@ -32,11 +33,14 @@
     "gulp-babel": "^8.0.0",
     "gulp-insert": "^0.5.0",
     "gulp-plumber": "^1.2.1",
+    "gulp-uglify-es": "^2.0.0",
     "jimp": "^0.9.3",
     "minimist": "^1.2.0",
     "regenerator-runtime": "^0.13.3",
     "request": "^2.87.0",
-    "request-promise-native": "^1.0.5"
+    "request-promise-native": "^1.0.5",
+    "webpack-node-externals": "^1.7.2",
+    "webpack-stream": "^5.2.1"
   },
   "license": "MIT"
 }
