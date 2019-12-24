@@ -11,7 +11,7 @@ pictures with a face of your choice using NodeJS.
 
 ### CLI/Quickstart
 
-facreplace contains a CLI utility you can use to replace faces
+facereplace contains a CLI utility you can use to replace faces
 in pictures without writing your own script/code.
 
 ```sh

@@ -20,9 +20,9 @@ const argv = minimist(process.argv.slice(2))
 
     const fileExt = path.extname(destPicture)
     const newFilePath = path.join(process.env.HOME || process.env.USERPROFILE, `facereplace_${Date.now()}${fileExt || 'jpeg'}`)
-    const face = FaceReplace(facePicture)
-    const imgBuffer = await face.replace(destPicture)
+    const imgBuffer = await FaceReplace(facePicture).replace(destPicture)
     await fs.promises.writeFile(newFilePath, imgBuffer)
+
     console.log(`Successfully replaced faces and saved your file here: ${newFilePath}`.green)
 
   } catch(err) {
