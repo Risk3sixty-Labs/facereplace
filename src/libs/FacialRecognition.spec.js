@@ -4,7 +4,6 @@ import path from 'path'
 import FacialRecognition from './FacialRecognition'
 
 describe('FacialRecognition', function() {
-  const face = FacialRecognition()
   const imagesPath = path.join(__dirname, '..', '..', 'images') 
   const imgPath = path.join(imagesPath, 'familypic.png')
 
@@ -24,7 +23,7 @@ describe('FacialRecognition', function() {
       //     }
       //   }
       // ]
-      const [ detections, newBuffer ] = await face.drawFaceOutlines(imgPath)
+      const [ detections, newBuffer ] = await FacialRecognition.drawFaceOutlines(imgPath)
       // await fs.promises.writeFile(path.join(imagesPath, 'new.jpeg'), newBuffer)
 
       assert.equal(5, detections.length)

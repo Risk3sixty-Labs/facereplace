@@ -4,8 +4,6 @@ import FacialRecognition from './libs/FacialRecognition'
 import FileHelpers from './libs/FileHelpers'
 import ImageHelpers from './libs/ImageHelpers'
 
-const files = FileHelpers()
-
 export default function FaceReplace(facePicPathOrUrl) {
   return {
     faceReplacePath: facePicPathOrUrl,
@@ -17,9 +15,8 @@ export default function FaceReplace(facePicPathOrUrl) {
   
     async replace(sourceImgPathOrUrl) {
       const img = ImageHelpers()
-      const face = FacialRecognition()
 
-      await files.checkAndCreateDirectory(this.tmpPath)
+      await FileHelpers.checkAndCreateDirectory(this.tmpPath)
       await this.confirmFacePathIsSet()
   
       let imgPath = sourceImgPathOrUrl
@@ -27,7 +24,7 @@ export default function FaceReplace(facePicPathOrUrl) {
         imgPath = await this.getFileAndStoreLocally(imgPath)
   
       await img.open(imgPath)
-      const [ detections ] = await face.drawFaceOutlines(imgPath)
+      const [ detections ] = await FacialRecognition.drawFaceOutlines(imgPath)
       await Promise.all(
         detections.map(async detection => {
           const localFaceImg = ImageHelpers()
@@ -47,7 +44,7 @@ export default function FaceReplace(facePicPathOrUrl) {
     async getFileAndStoreLocally(imgUrl) {
       const splitUrl = imgUrl.split('/')
       const localFilename = splitUrl[splitUrl.length - 1]
-      const imgBuff = await files.getUrlBuffer(imgUrl)
+      const imgBuff = await FileHelpers.getUrlBuffer(imgUrl)
       
       const fullPath = path.join(this.tmpPath, localFilename)
       await fs.promises.writeFile(fullPath, imgBuff)

@@ -12,35 +12,42 @@ import * as faceapi from 'face-api.js'
 const { Canvas, Image, ImageData } = canvas
 faceapi.env.monkeyPatch({ Canvas, Image, ImageData })
 
-const faceDetectionNet = faceapi.nets.ssdMobilenetv1
+export default {
+  faceDetectionNet: faceapi.nets.ssdMobilenetv1,
+  loadedNet: false,
 
-export default function FacialRecognition() {
-  return {
-    async drawFaceOutlines(imagePathOrUrl) {
-      await faceDetectionNet.loadFromDisk(path.join(__dirname, '..', '..', 'weights'))
-      const img = await canvas.loadImage(imagePathOrUrl)
-      const detections = await faceapi.detectAllFaces(img, this.getFaceDetectorOptions(faceDetectionNet))
-      
-      const out = faceapi.createCanvasFromMedia(img)
-      faceapi.draw.drawDetections(out, detections)
+  async init() {
+    if (this.loadedNet)
+      return
 
-      return [
-        detections,
-        out.toBuffer('image/jpeg')
-      ]
-    },
+    await this.faceDetectionNet.loadFromDisk(path.join(__dirname, '..', '..', 'weights'))
+    this.loadedNet = true
+  },
 
-    getFaceDetectorOptions(net) {
-      // SsdMobilenetv1Options
-      const minConfidence = 0.5
+  async drawFaceOutlines(imagePathOrUrl) {
+    await this.init()
+    const img = await canvas.loadImage(imagePathOrUrl)
+    const detections = await faceapi.detectAllFaces(img, this.getFaceDetectorOptions(this.faceDetectionNet))
+    
+    const out = faceapi.createCanvasFromMedia(img)
+    faceapi.draw.drawDetections(out, detections)
 
-      // TinyFaceDetectorOptions
-      const inputSize = 408
-      const scoreThreshold = 0.5
+    return [
+      detections,
+      out.toBuffer('image/jpeg')
+    ]
+  },
 
-      return (net === faceapi.nets.ssdMobilenetv1)
-        ? new faceapi.SsdMobilenetv1Options({ minConfidence })
-        : new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold })
-    }
+  getFaceDetectorOptions(net) {
+    // SsdMobilenetv1Options
+    const minConfidence = 0.5
+
+    // TinyFaceDetectorOptions
+    const inputSize = 408
+    const scoreThreshold = 0.5
+
+    return (net === faceapi.nets.ssdMobilenetv1)
+      ? new faceapi.SsdMobilenetv1Options({ minConfidence })
+      : new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold })
   }
 }
