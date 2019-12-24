@@ -19,6 +19,7 @@ export default function FaceReplace(facePicPathOrUrl) {
       const img = ImageHelpers()
       const face = FacialRecognition()
 
+      await files.checkAndCreateDirectory(this.tmpPath)
       await this.confirmFacePathIsSet()
   
       let imgPath = sourceImgPathOrUrl
@@ -40,20 +41,10 @@ export default function FaceReplace(facePicPathOrUrl) {
         })
       )
   
-      const replacedImgBuffer = await img.toBuffer()
-      const replacedImgName = `facereplace_${Date.now()}.jpeg`
-      const replacedImgPath = path.join(this.tmpPath, replacedImgName)
-      await fs.promises.writeFile(replacedImgPath, replacedImgBuffer)
-  
-      return {
-        name: replacedImgName,
-        path: replacedImgPath,
-        buffer: replacedImgBuffer
-      }
+      return await img.toBuffer()
     },
   
     async getFileAndStoreLocally(imgUrl) {
-      await files.checkAndCreateDirectory(this.tmpPath)
       const splitUrl = imgUrl.split('/')
       const localFilename = splitUrl[splitUrl.length - 1]
       const imgBuff = await files.getUrlBuffer(imgUrl)

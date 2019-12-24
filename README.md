@@ -12,19 +12,20 @@ pictures with a face of your choice using NodeJS.
 ### Usage
 
 ```js
+import fs from 'fs'
 import FaceReplace from 'facereplace'
+// or
 // const FaceReplace = require('facereplace').default
 
 // images on file system
-const face = FaceReplace(`/tmp/catFace.png`)
-const {
-  name,   // face-replaced file name
-  path,   // face-replaced local file path (stored in 'tmp' directory created in this repo)
-  buffer  // face-replaced raw buffer for you to do as you wish
-} = await face.replace(`/tmp/picToReplaceFacesWithCatFace.jpeg`)
+const face = FaceReplace('/tmp/catFace.png')
+
+// returns a raw buffer of the new face-replaced image for you to do as you wish
+const imgBuffer = await face.replace('/tmp/picToReplaceFacesWithCatFace.jpeg')
+await fs.promises.writeFile('/tmp/replaced.jpeg', imgBuffer)
 
 // images on the internet
 const face = FaceReplace()
-face.setFacePicture(`https://acme.com/face.jpeg`)
-const { name, path, buffer } = await face.replace(`https://acme.com/picFullOfFaces.png`)
+face.setFacePicture('https://acme.com/face.jpeg')
+const imgBuffer = await face.replace('https://acme.com/picFullOfFaces.png')
 ```

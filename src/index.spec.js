@@ -20,14 +20,14 @@ describe('FaceReplace', function() {
   })
 
   describe('#replace', function() {
+    this.timeout(10000)
+
     it(`should run and replace all faces with replacement pic stored locally without error`, async function() {
-      this.timeout(5000)
       const face = FaceReplace(path.join(imagesPath, 'catface.png'))
       await face.replace(imgPath)
     })
 
     it(`should run and replace all faces with replacement pic as URL without error`, async function() {
-      this.timeout(5000)
       const face = FaceReplace(`http://clipart-library.com/images_k/cat-face-transparent/cat-face-transparent-10.png`)
       await face.replace(`https://static.voices.com/wp-content/uploads/multiple-faces-male-and-female-actors-smiling-2.jpg`)
     })
