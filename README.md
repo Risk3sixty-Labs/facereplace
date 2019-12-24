@@ -13,7 +13,7 @@ pictures with a face of your choice using NodeJS.
 
 ```js
 import FaceReplace from 'facereplace'
-// const FaceReplace = require('facereplace).default
+// const FaceReplace = require('facereplace').default
 
 // images on file system
 const face = FaceReplace(`/tmp/catFace.png`)
