@@ -3,5 +3,10 @@
 *.DS_Store
 /node_modules
 /tmp
-/dist
+
+# ignore everything in dist except facereplace CLI script
+!/dist
+/dist/*
+!/dist/bin
+/dist/bin/*
 !/dist/bin/facereplace
