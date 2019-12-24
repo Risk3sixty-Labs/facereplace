@@ -1,7 +1,7 @@
 ## facereplace
 
 Use [face recognition API](https://github.com/justadudewhohacks/face-api.js) to replace faces in
-pictures with a picture of a face of your choice.
+pictures with a face of your choice using NodeJS.
 
 ![Face Replace Example](https://user-images.githubusercontent.com/13718950/71393327-0da16280-25da-11ea-916e-15085b30aa8e.png)
 
