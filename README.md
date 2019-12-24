@@ -18,7 +18,7 @@ const facePic = '/tmp/facePic.jpeg' // or 'https://acme.com/facePic.jpeg'
 const face = FaceReplace(facePic)
 ```
 
-1. `face.replace(string)` => Promise<Buffer>: takes a string of the local file path or public URL of the picture we want to replace faces in, and replaces them
+1. `face.replace(string)` => Promise&lt;Buffer&gt;: takes a string of the local file path or public URL of the picture we want to replace faces in, and replaces them
 2. `face.setFacePicture(string)` => void: takes a string of the local file path or public URL to replace the picture you want to replace all faces in your target picture(s)
 
 ### Usage
