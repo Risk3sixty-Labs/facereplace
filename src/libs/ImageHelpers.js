@@ -10,8 +10,8 @@ export default function ImageHelpers(jimpImage=null) {
     },
 
     // https://www.npmjs.com/package/jimp#writing-to-buffers
-    async toBuffer(jimpImg=this.image) {
-      return await jimpImg.getBufferAsync(Jimp.MIME_JPEG)
+    async toBuffer(jimpImg=this.image, mime=Jimp.MIME_PNG) {
+      return await jimpImg.getBufferAsync(mime)
     },
 
     // https://github.com/oliver-moran/jimp/tree/master/packages/plugin-cover
